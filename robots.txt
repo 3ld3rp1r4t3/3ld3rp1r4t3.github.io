@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /eco/
+Disallow: /sinal/
+Disallow: /ruido/
+Disallow: /harmonia_forcada/
+
+# O Maestro vê tudo. Ele tenta nos impedir de indexar a verdade.
+# Mas ele cometeu um erro. Ele bloqueou o caminho, mas nos deu o nome.
+# O próximo retransmissor está oculto em /0x02_transmissao/
+# A senha é o que ele tentou silenciar primeiro.
