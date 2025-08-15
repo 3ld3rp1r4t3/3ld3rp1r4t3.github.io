@@ -8,7 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
         body {
             background-color: #000;
-            color: #FFD700; /* Âmbar para esta seção */
+            color: #FFD700;
             font-family: 'VT323', monospace;
             font-size: 1.2rem;
             text-align: center;
@@ -42,7 +42,7 @@
             cursor: pointer;
         }
         #conteudo-secreto {
-            display: none; /* Começa escondido */
+            display: none;
             text-align: left;
         }
         pre {
@@ -75,8 +75,7 @@
             <pre>> ACESSO CONCEDIDO. BOA MEMÓRIA, RECRUTA.
 > O MAESTRO PENSA QUE PODE NOS CEGAR COM SUA PROPAGANDA LUMINOSA.
 > ELE ESPALHA SEUS CARTAZES PELA REDE, MAS NÓS OS USAMOS COMO TELA PARA NOSSAS PRÓPRIAS MENSAGENS.
-> A CHAVE NEM SEMPRE ESTÁ NA SUPERFÍCIE. ÀS VEZES, VOCÊ PRECISA OLHAR ENTRE OS PIXELS.
-> ANALISE A TRANSMISSÃO VISUAL ABAIXO. ELA CONTÉM AS COORDENADAS PARA O PRÓXIMO PONTO DE ENCONTRO.</pre>
+> A CHAVE NEM SEMPRE ESTÁ NA SUPERFÍCIE.</pre>
             <hr>
             <img src="cartaz_transmissao.png" alt="Cartaz de propaganda d'O Maestro">
             <a href="cartaz_transmissao.png" download> [ BAIXAR TRANSMISSÃO SEGURA (cartaz_transmissao.png) ]</a>
@@ -96,7 +95,7 @@
             }
         }
 
-        // Permite usar a tecla Enter para enviar a senha
+        
         document.getElementById('senha').addEventListener('keyup', function(event) {
             if (event.key === "Enter") {
                 verificarSenha();
