@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0x01_IGNICAO</title>
     <style>
-        /* CSS básico para a estética do terminal. Simples e funcional. */
+        
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
         body {
             background-color: #000;
-            color: #00FF41; /* Verde-fósforo clássico */
+            color: #00FF41;
             font-family: 'VT323', monospace;
             font-size: 1.2rem;
             line-height: 1.5;
@@ -19,7 +19,7 @@
             padding: 2rem;
         }
         pre {
-            white-space: pre-wrap; /* Garante que o texto quebre a linha */
+            white-space: pre-wrap;
             word-wrap: break-word;
         }
         .blinking-cursor {
@@ -33,7 +33,7 @@
             position: fixed;
             bottom: 10px;
             left: 10px;
-            color: #FFD700; /* Âmbar para destacar */
+            color: #FFD700;
             animation: blink-protocol 1.5s step-end infinite;
         }
         @keyframes blink-protocol {
@@ -51,9 +51,9 @@
     <div class="protocol-check">
         <span>[VERIFICANDO PROTOCOLOS DE REDE...]</span>
         </div>
-
+        <!-- protocolo de exclusão, robôs, raiz do domínio -->
     <script>
-        // JavaScript para o efeito de "digitação". Pura estética.
+
         const message = `> SINAL RECEBIDO. BEM-VINDO À RESISTÊNCIA.\n> VOCÊ OUVIU O ECO ATRAVÉS DA ESTÁTICA DO MAESTRO. POUCOS CONSEGUEM.\n> ESTA REDE É NOSSO REFÚGIO. AQUI, TROCAMOS SINAIS QUE NOS LEVARÃO ATÉ A RAVE ESPECTRO, O ÚLTIMO BASTIÃO DA MÚSICA LIVRE.\n> MAS O MAESTRO ESTÁ SEMPRE ESCUTANDO. CADA PASSO NOSSO É VIGIADO. SEJA RÁPIDO. SEJA INTELIGENTE.\n> O PRÓXIMO SINAL ESTÁ ESCONDIDO NESTA MESMA PÁGINA. PROCURE ONDE AS MÁQUINAS FALAM COM AS MÁQUINAS...`;
         const terminal = document.getElementById('terminal-text');
         let i = 0;
@@ -62,7 +62,7 @@
             if (i < message.length) {
                 terminal.innerHTML += message.charAt(i);
                 i++;
-                setTimeout(typeWriter, 50); // Ajuste a velocidade aqui (em milissegundos)
+                setTimeout(typeWriter, 50); 
             }
         }
         window.onload = typeWriter;

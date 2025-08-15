@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0x02_TRANSMISSAO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        body {
+            background-color: #000;
+            color: #FFD700; /* Âmbar para esta seção */
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 800px;
+            margin: auto;
+        }
+        #prompt-senha, #conteudo-secreto {
+            border: 2px solid #FFD700;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        input[type="password"] {
+            background-color: #111;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            margin: 1rem 0;
+        }
+        button {
+            background-color: #FFD700;
+            border: none;
+            color: #000;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        #conteudo-secreto {
+            display: none; /* Começa escondido */
+            text-align: left;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        img {
+            max-width: 100%;
+            border: 2px solid #FFD700;
+        }
+        a {
+            color: #00FF41;
+            display: block;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>[RETRANSMISSOR 0x02]</h1>
+
+        <div id="prompt-senha">
+            <label for="senha">SINAL INSTÁVEL... AUTENTICAÇÃO NECESSÁRIA:</label><br>
+            <input type="password" id="senha" autofocus>
+            <br>
+            <button onclick="verificarSenha()">VALIDAR SINAL</button>
+        </div>
+
+        <div id="conteudo-secreto">
+            <pre>> ACESSO CONCEDIDO. BOA MEMÓRIA, RECRUTA.
+> O MAESTRO PENSA QUE PODE NOS CEGAR COM SUA PROPAGANDA LUMINOSA.
+> ELE ESPALHA SEUS CARTAZES PELA REDE, MAS NÓS OS USAMOS COMO TELA PARA NOSSAS PRÓPRIAS MENSAGENS.
+> A CHAVE NEM SEMPRE ESTÁ NA SUPERFÍCIE. ÀS VEZES, VOCÊ PRECISA OLHAR ENTRE OS PIXELS.
+> ANALISE A TRANSMISSÃO VISUAL ABAIXO. ELA CONTÉM AS COORDENADAS PARA O PRÓXIMO PONTO DE ENCONTRO.</pre>
+            <hr>
+            <img src="cartaz_transmissao.png" alt="Cartaz de propaganda d'O Maestro">
+            <a href="cartaz_transmissao.png" download> [ BAIXAR TRANSMISSÃO SEGURA (cartaz_transmissao.png) ]</a>
+        </div>
+    </div>
+
+    <script>
+        function verificarSenha() {
+            const senhaCorreta = "eco";
+            const senhaDigitada = document.getElementById('senha').value.toLowerCase(); // toLowerCase para não diferenciar maiúsculas
+
+            if (senhaDigitada === senhaCorreta) {
+                document.getElementById('prompt-senha').style.display = 'none';
+                document.getElementById('conteudo-secreto').style.display = 'block';
+            } else {
+                alert('ACESSO NEGADO... ESTÁTICA... SINAL PERDIDO.');
+            }
+        }
+
+        // Permite usar a tecla Enter para enviar a senha
+        document.getElementById('senha').addEventListener('keyup', function(event) {
+            if (event.key === "Enter") {
+                verificarSenha();
+            }
+        });
+    </script>
+</body>
+</html>
