@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0x03_REFUGIO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        body {
+            background-color: #000;
+            color: #00FF41;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+        }
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            border: 1px dashed #00FF41;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+            border-left: 3px solid #00FF41;
+            padding-left: 1rem;
+        }
+        .downloads {
+            margin-top: 2rem;
+            border-top: 1px dashed #00FF41;
+            padding-top: 1.5rem;
+        }
+        h2 {
+            color: #FFD700;
+        }
+        a {
+            color: #FFD700;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <pre id="terminal-text"></pre>
+        
+        <div id="downloads-container" style="display: none;">
+            <h2>PACOTES DE DADOS RECUPERADOS:</h2>
+            <a href="dados_corrompidos.zip" download>> [BAIXAR PACOTE CRIPTOGRAFADO (dados_corrompidos.zip)]</a>
+            <a href="o_manifesto.txt" download>> [BAIXAR FRAGMENTO DE CHAVE (o_manifesto.txt)]</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const message = `...SINAL VISUAL RECEBIDO. BEM-VINDO AO REFÚGIO.\n\n> VOCÊ VIU A MENSAGEM OCULTA NO RUÍDO. A SUA PERCEPÇÃO É RARA. O MAESTRO SÓ CONSEGUE OUVIR AS NOTAS, NÃO A IMAGEM QUE ELAS PINTAM. USAMOS ISSO PARA COMUNICAR SEGREDOS.\n\n> Mas nossa última transmissão foi parcialmente corrompida. Recebemos um pacote de dados criptografado, mas a chave de acesso foi perdida durante um ataque das sentinelas do Maestro. Nossos analistas acreditam que a chave foi fragmentada e escondida em um dos nossos próprios manifestos.`;
+            const terminal = document.getElementById('terminal-text');
+            const downloads = document.getElementById('downloads-container');
+            let i = 0;
+
+            function typeWriter() {
+                if (terminal && i < message.length) {
+                    terminal.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 40);
+                } else {
+                    if(downloads) {
+                        downloads.style.display = 'block';
+                    }
+                }
+            }
+            
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
