@@ -119,3 +119,12 @@ main {
 .message-section p { color: #fff; font-size: 1.4rem; }
 .message-section a { display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; background-color: #d83b9a; color: #1a0a21; text-decoration: none; font-size: 1.5rem; transition: all 0.3s ease; }
 .message-section a:hover { box-shadow: 0 0 15px #d83b9a; color: #fff; }
+/* Regra especial para layouts de página única centralizada */
+body.centered-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
