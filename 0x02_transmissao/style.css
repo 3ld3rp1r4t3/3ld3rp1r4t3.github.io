@@ -1,0 +1,55 @@
+/* Arquivo: 0x02_transmissao/style.css */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body { 
+    background-color: #000; 
+    color: #FFD700; 
+    font-family: 'VT323', monospace; 
+    font-size: 1.2rem; 
+    text-align: center; 
+}
+.container { 
+    padding: 2rem; 
+    max-width: 800px; 
+    margin: auto; 
+}
+#prompt-senha, #conteudo-secreto { 
+    border: 2px solid #FFD700; 
+    padding: 1.5rem; 
+    margin-top: 2rem; 
+}
+input[type="password"] { 
+    background-color: #111; 
+    border: 1px solid #FFD700; 
+    color: #FFD700; 
+    font-family: 'VT323', monospace; 
+    font-size: 1.2rem; 
+    padding: 0.5rem; 
+    margin: 1rem 0; 
+}
+button { 
+    background-color: #FFD700; 
+    border: none; 
+    color: #000; 
+    font-family: 'VT323', monospace; 
+    font-size: 1.2rem; 
+    padding: 0.5rem 1rem; 
+    cursor: pointer; 
+}
+#conteudo-secreto { 
+    display: none; 
+    text-align: left; 
+}
+pre { 
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+}
+img { 
+    max-width: 100%; 
+    border: 2px solid #FFD700; 
+}
+a { 
+    color: #00FF41; 
+    display: block; 
+    margin-top: 1rem; 
+}
