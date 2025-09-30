@@ -5,65 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0x02_TRANSMISSAO</title>
     <style>
+        /* Estilos (inalterados) */
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-        body {
-            background-color: #000;
-            color: #FFD700;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-        .container {
-            padding: 2rem;
-            max-width: 800px;
-            margin: auto;
-        }
-        #prompt-senha, #conteudo-secreto {
-            border: 2px solid #FFD700;
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-        input[type="password"] {
-            background-color: #111;
-            border: 1px solid #FFD700;
-            color: #FFD700;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            padding: 0.5rem;
-            margin: 1rem 0;
-        }
-        button {
-            background-color: #FFD700;
-            border: none;
-            color: #000;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-        }
-        #conteudo-secreto {
-            display: none;
-            text-align: left;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        img {
-            max-width: 100%;
-            border: 2px solid #FFD700;
-        }
-        a {
-            color: #00FF41;
-            display: block;
-            margin-top: 1rem;
-        }
+        body { background-color: #000; color: #FFD700; font-family: 'VT323', monospace; font-size: 1.2rem; text-align: center; }
+        .container { padding: 2rem; max-width: 800px; margin: auto; }
+        #prompt-senha, #conteudo-secreto { border: 2px solid #FFD700; padding: 1.5rem; margin-top: 2rem; }
+        input[type="password"] { background-color: #111; border: 1px solid #FFD700; color: #FFD700; font-family: 'VT323', monospace; font-size: 1.2rem; padding: 0.5rem; margin: 1rem 0; }
+        button { background-color: #FFD700; border: none; color: #000; font-family: 'VT323', monospace; font-size: 1.2rem; padding: 0.5rem 1rem; cursor: pointer; }
+        #conteudo-secreto { display: none; text-align: left; }
+        pre { white-space: pre-wrap; word-wrap: break-word; }
+        img { max-width: 100%; border: 2px solid #FFD700; }
+        a { color: #00FF41; display: block; margin-top: 1rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>[RETRANSMISSOR 0x02]</h1>
-
         <div id="prompt-senha">
             <label for="senha">SINAL INSTÁVEL... AUTENTICAÇÃO NECESSÁRIA:</label><br>
             <input type="password" id="senha" autofocus>
@@ -71,35 +28,60 @@
             <button onclick="verificarSenha()">VALIDAR SINAL</button>
         </div>
 
-        <div id="conteudo-secreto">
-            <pre>> ACESSO CONCEDIDO. BOA MEMÓRIA, RECRUTA.
-> O MAESTRO PENSA QUE PODE NOS CEGAR COM SUA PROPAGANDA LUMINOSA.
-> ELE ESPALHA SEUS CARTAZES PELA REDE, MAS NÓS OS USAMOS COMO TELA PARA NOSSAS PRÓPRIAS MENSAGENS.
-> A CHAVE NEM SEMPRE ESTÁ NA SUPERFÍCIE.</pre>
-            <hr>
-            <img src="cartaz_transmissao.png" alt="Cartaz de propaganda d'O Maestro">
-            <a href="cartaz_transmissao.png" download> [ BAIXAR TRANSMISSÃO SEGURA (cartaz_transmissao.png) ]</a>
-        </div>
+        <div id="conteudo-secreto"></div>
     </div>
 
     <script>
-        function verificarSenha() {
-            const senhaCorreta = "eco";
-            const senhaDigitada = document.getElementById('senha').value.toLowerCase(); // toLowerCase para não diferenciar maiúsculas
+        async function verificarSenha() {
+            const senhaInput = document.getElementById('senha');
+            const senhaDigitada = senhaInput.value.toLowerCase().trim();
 
-            if (senhaDigitada === senhaCorreta) {
-                document.getElementById('prompt-senha').style.display = 'none';
-                document.getElementById('conteudo-secreto').style.display = 'block';
-            } else {
-                alert('ACESSO NEGADO... ESTÁTICA... SINAL PERDIDO.');
+            try {
+                const response = await fetch('/.netlify/functions/verificar-senha', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ senha: senhaDigitada })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success === true) {
+                    // Resposta correta: constrói a recompensa na tela
+                    const conteudoSecreto = document.getElementById('conteudo-secreto');
+
+                    // Cria os elementos dinamicamente
+                    const narrativeElement = document.createElement('pre');
+                    narrativeElement.textContent = data.narrative;
+
+                    const imageElement = document.createElement('img');
+                    imageElement.src = data.image;
+                    imageElement.alt = "Cartaz de propaganda d'O Maestro";
+
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = data.image;
+                    downloadLink.download = "cartaz_transmissao.png";
+                    downloadLink.textContent = "[ BAIXAR TRANSMISSÃO SEGURA (cartaz_transmissao.png) ]";
+
+                    // Adiciona os elementos ao container e o exibe
+                    conteudoSecreto.appendChild(narrativeElement);
+                    conteudoSecreto.appendChild(document.createElement('hr'));
+                    conteudoSecreto.appendChild(imageElement);
+                    conteudoSecreto.appendChild(downloadLink);
+
+                    document.getElementById('prompt-senha').style.display = 'none';
+                    conteudoSecreto.style.display = 'block';
+
+                } else {
+                    alert(data.message || 'ACESSO NEGADO... ESTÁTICA... SINAL PERDIDO.');
+                    senhaInput.value = '';
+                }
+            } catch (error) {
+                alert('Erro de comunicação com o servidor de autenticação.');
             }
         }
 
-        
         document.getElementById('senha').addEventListener('keyup', function(event) {
-            if (event.key === "Enter") {
-                verificarSenha();
-            }
+            if (event.key === "Enter") verificarSenha();
         });
     </script>
 </body>

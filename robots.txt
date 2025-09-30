@@ -2,7 +2,7 @@ User-agent: *
 Disallow: /eco/
 Disallow: /sinal/
 Disallow: /ruido/
-Disallow: /harmonia_forcada/
+Disallow: /encontro/
 
 # O Maestro vê tudo. Ele tenta nos impedir de indexar a verdade.
 # Mas ele cometeu um erro. Ele bloqueou o caminho, mas nos deu o nome.
