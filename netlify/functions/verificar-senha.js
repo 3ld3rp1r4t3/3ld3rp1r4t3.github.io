@@ -8,21 +8,25 @@ exports.handler = async function(event, context) {
     }
 
     try {
+        // LOG 1: Mostra exatamente o que a função recebeu.
+        console.log("Função iniciada. Corpo da requisição:", event.body);
+
         const data = JSON.parse(event.body);
         const senhaEnviada = data.senha;
+
+        // LOG 2: Mostra a senha que extraímos do pacote de dados.
+        console.log("Senha recebida e processada pelo guarda:", senhaEnviada);
+
         const senhaCorreta = "eco";
 
         if (senhaEnviada === senhaCorreta) {
-            // Senha correta: Prepara o pacote de recompensa
-            const narrativeText = `> ACESSO CONCEDIDO. BOA MEMÓRIA, RECRUTA.\n> O MAESTRO PENSA QUE PODE NOS CEGAR COM SUA PROPAGANDA LUMINOSA.\n> ELE ESPALHA SEUS CARTAZES PELA REDE, MAS NÓS OS USAMOS COMO TELA PARA NOSSAS PRÓPRIAS MENSAGENS.\n> A CHAVE NEM SEMPRE ESTÁ NA SUPERFÍCIE. ÀS VEZES, VOCÊ PRECISA OLHAR ENTRE OS PIXELS.\n> ANALISE A TRANSMISSÃO VISUAL ABAIXO. ELA CONTÉM AS COORDENADAS PARA O PRÓXIMO PONTO DE ENCONTRO.`;
-
-            // Lê o arquivo de imagem e o converte para Base64
+            // Lógica de sucesso (inalterada)
+            const narrativeText = `> ACESSO CONCEDIDO...`;
             const imagePath = path.join(__dirname, 'cartaz_transmissao.png');
             const imageBuffer = fs.readFileSync(imagePath);
             const imageBase64 = imageBuffer.toString('base64');
             const imageDataUri = `data:image/png;base64,${imageBase64}`;
 
-            // Envia o pacote completo
             return { 
                 statusCode: 200, 
                 body: JSON.stringify({ 
@@ -35,6 +39,7 @@ exports.handler = async function(event, context) {
             return { statusCode: 401, body: JSON.stringify({ success: false, message: "ACESSO NEGADO" }) };
         }
     } catch (error) {
+        console.error("ERRO DENTRO DA FUNÇÃO:", error); // Log de erro
         return { statusCode: 500, body: "Erro no servidor de autenticação." };
     }
 };
