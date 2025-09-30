@@ -4,43 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>0x01_IGNICAO</title>
-    <style>
-
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-        body {
-            background-color: #000;
-            color: #00FF41;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            line-height: 1.5;
-        }
-        .container {
-            padding: 2rem;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .blinking-cursor {
-            animation: blink 1s step-end infinite;
-        }
-        @keyframes blink {
-            from, to { color: transparent; }
-            50% { color: #00FF41; }
-        }
-        .protocol-check {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            color: #FFD700;
-            animation: blink-protocol 1.5s step-end infinite;
-        }
-        @keyframes blink-protocol {
-            from, to { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -51,21 +15,7 @@
     <div class="protocol-check">
         <span>[VERIFICANDO PROTOCOLOS DE REDE...]</span>
         </div>
-        <!-- protocolo de exclusão, robôs, raiz do domínio -->
-    <script>
 
-        const message = `> SINAL RECEBIDO. BEM-VINDO À RESISTÊNCIA.\n> VOCÊ OUVIU O ECO ATRAVÉS DA ESTÁTICA DO MAESTRO. POUCOS CONSEGUEM.\n> ESTA REDE É NOSSO REFÚGIO. AQUI, TROCAMOS SINAIS QUE NOS LEVARÃO ATÉ O ENCONTRO, O ÚLTIMO BASTIÃO DA MÚSICA LIVRE.\n> MAS O MAESTRO ESTÁ SEMPRE ESCUTANDO. CADA PASSO NOSSO É VIGIADO. SEJA RÁPIDO. SEJA INTELIGENTE.\n> O PRÓXIMO SINAL ESTÁ ESCONDIDO NESTA MESMA PÁGINA. PROCURE ONDE AS MÁQUINAS FALAM COM AS MÁQUINAS...`;
-        const terminal = document.getElementById('terminal-text');
-        let i = 0;
-
-        function typeWriter() {
-            if (i < message.length) {
-                terminal.innerHTML += message.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50); 
-            }
-        }
-        window.onload = typeWriter;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
