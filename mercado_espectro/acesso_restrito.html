@@ -4,83 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sala de Dados Segura - Acesso</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-        body {
-            background-color: #0c0c0c;
-            color: #a3a3a3;
-            font-family: 'VT323', monospace;
-            font-size: 1.2rem;
-            margin: 0;
-            padding: 2rem;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .forum-posts, .login-panel {
-            background-color: #111;
-            border: 1px solid #444;
-            padding: 1.5rem;
-        }
-        h1, h2, h3 {
-            color: #d83b9a;
-            text-shadow: 0 0 5px #d83b9a;
-        }
-        .post {
-            border-bottom: 1px dashed #333;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-        }
-        .post-author {
-            color: #00FF41;
-            font-weight: bold;
-        }
-        .post-content {
-            color: #ccc;
-        }
-        .login-panel label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-        .login-panel input {
-            width: 90%;
-            padding: 0.5rem;
-            margin-bottom: 1.5rem;
-            background-color: #000;
-            border: 1px solid #444;
-            color: #00FF41;
-            font-family: 'VT323', monospace;
-            font-size: 1.3rem;
-        }
-        .login-panel button {
-            width: 100%;
-            padding: 0.8rem;
-            font-size: 1.5rem;
-            background-color: #d83b9a;
-            border: none;
-            color: #1a0a21;
-            font-family: 'VT323', monospace;
-            cursor: pointer;
-        }
-        #login-status {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
-        .dica-interativa {
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            transition: text-shadow 0.3s ease;
-        }
-        .dica-interativa:hover {
-            text-shadow: 0 0 8px #00FF41;
-        }
-    </style>
+    <link rel="stylesheet" href="shared_style.css">
 </head>
 <body>
     <h1>[SALA DE DADOS SEGURA]</h1>
@@ -131,51 +55,6 @@
             <div id="login-status"></div>
         </section>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const nodeIdInput = document.getElementById('node-id-input');
-            const accessKeyInput = document.getElementById('access-key-input');
-            const authButton = document.getElementById('auth-button');
-            const loginStatus = document.getElementById('login-status');
-
-            const dica1 = document.getElementById('dica1');
-            const dica2 = document.getElementById('dica2');
-
-            if(dica1) {
-                dica1.addEventListener('click', function() {
-                    alert("...você está quase lá, o Sinal_Noturno ainda guarda a entrada para a base de dados do Maestro. Ele não esconde muito qual é a sua Chave de Acesso propositalmente...");
-                });
-            }
-            if(dica2) {
-                dica2.addEventListener('click', function() {
-                    alert("...com 2 criptografias e 1 keyword você estará apto a seguir aidante. Dê um passo para trás, não rode adiante, e decodifique a chave...");
-                });
-            }
-
-            // --- LÓGICA DE AUTENTICAÇÃO CORRIGIDA ---
-            authButton.addEventListener('click', function() {
-                const nodeId = nodeIdInput.value;
-                const accessKey = accessKeyInput.value;
-
-                // Definindo as credenciais corretas
-                const correctNodeId = "Sinal_Noturno";
-                const correctAccessKey = "dissonancia";
-
-                // Verificando as duas condições separadamente com o operador && (E)
-                if (nodeId === correctNodeId && accessKey === correctAccessKey) {
-                    loginStatus.style.color = "#00FF41";
-                    loginStatus.textContent = ">>> ACESSO CONCEDIDO. BEM-VINDO AO NÚCLEO. REDIRECIONANDO...";
-                    // Adiciona um atraso de 2 segundos antes de redirecionar para dar tempo de ler a mensagem
-                    setTimeout(function() {
-                    window.location.href = "perfil_sinal_noturno.html";
-                    }, 2000);
-               }else {
-                    loginStatus.style.color = "#d83b9a";
-                    loginStatus.textContent = ">>> FALHA NA AUTENTICAÇÃO. CREDENCIAIS INVÁLIDAS.";
-                }
-            });
-        });
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>
