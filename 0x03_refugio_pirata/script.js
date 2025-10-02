@@ -24,4 +24,21 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     typeWriter();
+
+    // --- NOVO BLOCO: Envia um ping para o servidor de log ---
+    async function logAccess() {
+        try {
+            await fetch('/.netlify/functions/registrar-acesso', {
+                method: 'POST',
+                // Enviamos o nome da página que foi acessada
+                body: JSON.stringify({ pagina: "0x03_refugio_pirata" })
+            });
+        } catch (error) {
+            // A falha no log não deve impactar a experiência do jogador.
+            // Apenas registramos o erro no console do navegador dele, para nosso debug.
+            console.error("Falha ao enviar ping de acesso.");
+        }
+    }
+
+    logAccess();
 });
