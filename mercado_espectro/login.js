@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         try {
             // Este fetch deve apontar para a função no site frequencia-perdida
-            const response = await fetch('/.netlify/functions/verificar-acesso-restrito', {
+            const response = await fetch('/.netlify/functions/verificar-mercado', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nodeId: nodeId, accessKey: accessKey })
